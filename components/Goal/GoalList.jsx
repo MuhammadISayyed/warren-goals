@@ -1,7 +1,13 @@
-function GoalList() {
+import Goal from './Goal';
+
+function GoalList({ goals }) {
   return (
     <div>
-      <h3> Your goals list</h3>
+      {goals.map((goal) => (
+        <Goal goal={goal} key={goal.id}>
+          {goal.content}
+        </Goal>
+      ))}
     </div>
   );
 }
