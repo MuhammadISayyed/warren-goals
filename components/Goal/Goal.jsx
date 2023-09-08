@@ -1,19 +1,13 @@
 'use client';
 
 import { dePrioritizeGoal, prioritizeGoal } from '@/utils/actions';
-import { useState } from 'react';
-
-export default Goal;
 
 function Goal({ goal }) {
-  const [isprioritized, setIsPrioritized] = useState(false);
-
   function updateGoal() {
-    setIsPrioritized(!isprioritized);
-    if (isprioritized) {
-      dePrioritizeGoal(goal.id);
-    } else if (!isprioritized) {
+    if (goal.prioritized === false) {
       prioritizeGoal(goal.id);
+    } else if (goal.prioritized === true) {
+      dePrioritizeGoal(goal.id);
     }
   }
 
@@ -26,3 +20,5 @@ function Goal({ goal }) {
     </div>
   );
 }
+
+export default Goal;
