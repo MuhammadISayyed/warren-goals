@@ -11,3 +11,25 @@ export const newGoal = async (formData) => {
 
   revalidatePath('/');
 };
+
+export const prioritizeGoal = async (id) => {
+  await db.goal.update({
+    where: { id },
+    data: {
+      prioritized: true,
+    },
+  });
+
+  revalidatePath('/');
+};
+
+export const dePrioritizeGoal = async (id) => {
+  await db.goal.update({
+    where: { id },
+    data: {
+      prioritized: false,
+    },
+  });
+
+  revalidatePath('/');
+};

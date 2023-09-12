@@ -15,5 +15,7 @@ datasource db {
 model Goal {
   id String @id @default(uuid())
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   content String
+  prioritized Boolean @default(false)
 }
