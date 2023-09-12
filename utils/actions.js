@@ -33,3 +33,12 @@ export const dePrioritizeGoal = async (id) => {
 
   revalidatePath('/');
 };
+
+export const countGoals = async () => {
+  const counter = await db.goal.count({
+    where: {
+      prioritized: true,
+    },
+  });
+  return counter;
+};
