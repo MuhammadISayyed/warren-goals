@@ -1,17 +1,18 @@
 'use client';
 
-import { dePrioritizeGoal, prioritizeGoal } from '@/utils/actions';
-import { countGoals } from '@/utils/actions';
+import { dePrioritizeGoal, prioritizeGoal, countGoals } from '@/utils/actions';
 import { useEffect, useState } from 'react';
 
 function Goal({ goal }) {
-  const [btn, setBtn] = useState(false);
+  const [disabled, setDisabled] = useState(false);
 
   useEffect(() => {
     async function updateBtn() {
       const counter = await countGoals();
       if (counter >= 5) {
-        setBtn(true);
+        setDisabled(true);
+      } else if (counter <= 5) {
+        setDisabled(false);
       }
     }
     updateBtn();
@@ -29,9 +30,11 @@ function Goal({ goal }) {
     <div className={`${goal.prioritized ? 'bg-green-300' : 'text-gray-400'}`}>
       <p>{goal.content}</p>
       {goal.prioritized ? (
-        <button onClick={updateGoal}>Deprioritize</button>
+        <button required onClick={updateGoal}>
+          Deprioritize
+        </button>
       ) : (
-        <button disabled={btn} onClick={updateGoal}>
+        <button required disabled={disabled} onClick={updateGoal}>
           Prioritize
         </button>
       )}
