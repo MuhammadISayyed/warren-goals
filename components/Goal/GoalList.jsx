@@ -7,16 +7,16 @@ function GoalList({ goals }) {
   return (
     <>
       <div>
-        {filterPrioritized.map((goal) => (
-          <Goal goal={goal} key={goal.id}>
+        {filterPrioritized.map((goal, index) => (
+          <Goal index={index} goal={goal} key={goal.id}>
             {goal.content}
           </Goal>
         ))}
       </div>
       <br />
       <div>
-        {filterDeprioritized.map((goal) => (
-          <Goal goal={goal} key={goal.id}>
+        {filterDeprioritized.map((goal, index) => (
+          <Goal index={index} goal={goal} key={goal.id}>
             {goal.content}
           </Goal>
         ))}
