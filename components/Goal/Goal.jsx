@@ -4,7 +4,7 @@ import { dePrioritizeGoal, prioritizeGoal, countGoals } from '@/utils/actions';
 import { useEffect, useState } from 'react';
 import DisabledButton from '../DisabledButton';
 
-function Goal({ goal }) {
+function Goal({ goal, index }) {
   const [disabled, setDisabled] = useState(false);
 
   useEffect(() => {
@@ -29,7 +29,10 @@ function Goal({ goal }) {
 
   return (
     <div className={`${goal.prioritized ? 'bg-green-300' : 'text-gray-400'}`}>
-      <p>{goal.content}</p>
+      <p>
+        {goal.prioritized ? index + 1 : undefined}
+        {goal.content}
+      </p>
       {goal.prioritized ? (
         <button onClick={updateGoal}>Deprioritize</button>
       ) : !disabled ? (
