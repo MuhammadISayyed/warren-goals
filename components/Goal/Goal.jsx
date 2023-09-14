@@ -1,8 +1,10 @@
 'use client';
 
-import { dePrioritizeGoal, prioritizeGoal, countGoals } from '@/utils/actions';
+import { dePrioritizeGoal, prioritizeGoal, deleteGoal, countGoals } from '@/utils/actions';
 import { useEffect, useState } from 'react';
 import DisabledButton from '../DisabledButton';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 
 function Goal({ goal, index }) {
   const [disabled, setDisabled] = useState(false);
@@ -27,24 +29,46 @@ function Goal({ goal, index }) {
     }
   }
 
+  function handleDelete() {
+    deleteGoal(goal.id);
+  }
+
   return (
-    <div className={`${goal.prioritized ? 'bg-green-300' : 'text-gray-400'}`}>
-      <p>
-        {goal.prioritized ? index + 1 : undefined}
-        {goal.content}
-      </p>
-      {goal.prioritized ? (
-        <button onClick={updateGoal}>Deprioritize</button>
-      ) : !disabled ? (
-        <button onClick={updateGoal}>Prioritize</button>
-      ) : (
-        <DisabledButton>
-          <button disabled={disabled} onClick={updateGoal}>
-            Prioritize
-          </button>
-        </DisabledButton>
-      )}
-    </div>
+    <Card className={` w-2/5 py-12  ${goal.prioritized ? 'bg-green-300' : 'text-gray-400'}`}>
+      <CardContent>
+        <div className="flex items-center justify-between gap-3">
+          <div className="flex flex-col items-start justify-between ml-3">
+            <span>{goal.prioritized ? index + 1 : undefined}</span>
+            <p className=" flex-grow">{goal.content}</p>
+          </div>
+          {goal.prioritized ? (
+            <Button onClick={updateGoal}>Deprioritize</Button>
+          ) : !disabled ? (
+            <div className="flex flex-col gap-3">
+              <Button variant="secondary" onClick={updateGoal}>
+                Prioritize
+              </Button>
+              <Button variant="destructive" onClick={handleDelete}>
+                Delete
+              </Button>
+            </div>
+          ) : (
+            <div className="flex flex-col gap-3">
+              <DisabledButton>
+                <div>
+                  <Button variant="secondary" disabled={disabled}>
+                    Prioritize
+                  </Button>
+                </div>
+              </DisabledButton>
+              <Button variant="destructive" onClick={handleDelete}>
+                Delete
+              </Button>
+            </div>
+          )}
+        </div>
+      </CardContent>
+    </Card>
   );
 }
 

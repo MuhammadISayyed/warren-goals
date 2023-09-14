@@ -10,10 +10,9 @@ const getGoals = async () => {
 export default async function Home() {
   const goals = await getGoals();
   return (
-    <>
-      <h1>Goals by Warren</h1>
+    <main>
       <GoalForm />
       <GoalList goals={goals}></GoalList>
-    </>
+    </main>
   );
 }

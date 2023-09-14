@@ -34,6 +34,14 @@ export const dePrioritizeGoal = async (id) => {
   revalidatePath('/');
 };
 
+export const deleteGoal = async (id) => {
+  await db.goal.delete({
+    where: { id },
+  });
+
+  revalidatePath('/');
+};
+
 export const countGoals = async () => {
   const counter = await db.goal.count({
     where: {
