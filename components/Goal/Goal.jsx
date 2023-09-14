@@ -1,10 +1,15 @@
-'use client';
+"use client";
 
-import { dePrioritizeGoal, prioritizeGoal, deleteGoal, countGoals } from '@/utils/actions';
-import { useEffect, useState } from 'react';
-import DisabledButton from '../DisabledButton';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import {
+  dePrioritizeGoal,
+  prioritizeGoal,
+  deleteGoal,
+  countGoals,
+} from "@/utils/actions";
+import { useEffect, useState } from "react";
+import DisabledButton from "../DisabledButton";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 function Goal({ goal, index }) {
   const [disabled, setDisabled] = useState(false);
@@ -34,10 +39,14 @@ function Goal({ goal, index }) {
   }
 
   return (
-    <Card className={` w-2/5 py-12  ${goal.prioritized ? 'bg-green-300' : 'text-gray-400'}`}>
+    <Card
+      className={` w-2/5 py-12  ${
+        goal.prioritized ? "bg-green-300" : "text-gray-400"
+      }`}
+    >
       <CardContent>
         <div className="flex items-center justify-between gap-3">
-          <div className="flex flex-col items-start justify-between ml-3">
+          <div className="ml-3 flex flex-col items-start justify-between">
             <span>{goal.prioritized ? index + 1 : undefined}</span>
             <p className=" flex-grow">{goal.content}</p>
           </div>

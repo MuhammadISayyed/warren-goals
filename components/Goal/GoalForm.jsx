@@ -1,19 +1,19 @@
-'use client';
+"use client";
 
-import { newGoal } from '@/utils/actions';
-import { useState } from 'react';
+import { newGoal } from "@/utils/actions";
+import { useState } from "react";
 
 function GoalForm() {
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
   const handleSubmit = () => {
-    setInput('');
+    setInput("");
   };
   return (
     <section className="my-12">
       <form
         action={newGoal}
         onSubmit={handleSubmit}
-        className="flex gap-9 justify-center items-center"
+        className="flex items-center justify-center gap-9"
       >
         <input
           required
@@ -23,9 +23,9 @@ function GoalForm() {
           placeholder="Enter a new goal"
           type="text"
           id="goal"
-          className="border border-black/25 w-2/3 h-32 px-9 rounded-full"
+          className="h-32 w-2/3 rounded-full border border-black/25 px-9"
         />
-        <button type="submit" className="w-1/5 bg-green-400 h-32 rounded-full ">
+        <button type="submit" className="h-32 w-1/5 rounded-full bg-green-400 ">
           Add a goal
         </button>
       </form>
