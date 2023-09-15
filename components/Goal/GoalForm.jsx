@@ -10,13 +10,9 @@ function GoalForm() {
     setInput("");
   };
   return (
-    <section className="my-12">
-      <form
-        action={newGoal}
-        onSubmit={handleSubmit}
-        className="flex items-center justify-center gap-9"
-      >
-        <div className="w-full flex gap-6 justify-center items-center">
+    <section className="mt-16">
+      <form action={newGoal} onSubmit={handleSubmit}>
+        <div className="max-sm:flex-col w-full flex gap-6 justify-center items-center">
           <input
             required
             max="191"
@@ -26,7 +22,7 @@ function GoalForm() {
             placeholder="Enter a new goal"
             type="text"
             id="goal"
-            className="shadow-md border border-dashed h-16 w-2/5 rounded-md border-black/25 px-9"
+            className="max-sm:w-4/5 shadow-md border border-dashed h-16 w-2/5 rounded-md border-black/25 px-9"
           />
           <button type="submit">
             <PlusCircle

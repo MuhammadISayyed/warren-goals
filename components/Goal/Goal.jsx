@@ -39,19 +39,23 @@ function Goal({ goal, index }) {
   }
 
   return (
-    <Card className={` w-2/5 py-3  ${goal.prioritized ? "" : "text-gray-400"}`}>
+    <Card
+      className={` max-sm:w-4/5 w-2/5 py-3  ${
+        goal.prioritized ? "" : "text-gray-400"
+      }`}
+    >
       <CardContent>
-        <div className="flex flex-col items-start justify-between gap-6">
+        <div className="max-sm:flex-row max-sm:gap-3 max-sm:justify-center max-sm:items-center flex flex-col items-start justify-between gap-6">
           <span
             className={`${
               goal.prioritized
-                ? "bg-greenly ease-in hover:translate-y-1 transition-all shadow-md text-white w-9 h-9 leading-9 rounded-full inline-block text-center"
+                ? "max-sm:w-6 max-sm:h-6 max-sm:leading-6 bg-greenly ease-in hover:translate-y-1 transition-all shadow-md text-white w-9 h-9 leading-9 rounded-full inline-block text-center"
                 : undefined
             }`}
           >
             {goal.prioritized ? index + 1 : undefined}
           </span>
-          <div className="flex justify-between w-full items-center gap-6">
+          <div className="max-sm:flex-col flex justify-between w-full items-center gap-6">
             <p className=" flex-grow">{goal.content}</p>
             {goal.prioritized ? (
               <Button
@@ -62,7 +66,7 @@ function Goal({ goal, index }) {
                 Deprioritize
               </Button>
             ) : !disabled ? (
-              <div className="flex flex-col gap-6">
+              <div className="max-sm:flex-row max-sm:gap-3 flex flex-col gap-6">
                 <Button
                   variant="secondary"
                   onClick={updateGoal}

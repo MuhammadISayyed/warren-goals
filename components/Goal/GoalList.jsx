@@ -7,7 +7,7 @@ function GoalList({ goals }) {
   );
 
   return (
-    <section className="ml-9 my-32">
+    <section className="max-sm:ml-0 ml-9 my-16">
       <div className="flex flex-col items-center justify-center gap-9">
         {filterPrioritized.map((goal, index) => (
           <Goal index={index} goal={goal} key={goal.id}>
