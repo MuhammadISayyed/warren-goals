@@ -39,42 +39,68 @@ function Goal({ goal, index }) {
   }
 
   return (
-    <Card
-      className={` w-2/5 py-12  ${
-        goal.prioritized ? "bg-green-300" : "text-gray-400"
-      }`}
-    >
+    <Card className={` w-2/5 py-3  ${goal.prioritized ? "" : "text-gray-400"}`}>
       <CardContent>
-        <div className="flex items-center justify-between gap-3">
-          <div className="ml-3 flex flex-col items-start justify-between">
-            <span>{goal.prioritized ? index + 1 : undefined}</span>
+        <div className="flex flex-col items-start justify-between gap-6">
+          <span
+            className={`${
+              goal.prioritized
+                ? "bg-greenly ease-in hover:translate-y-1 transition-all shadow-md text-white w-9 h-9 leading-9 rounded-full inline-block text-center"
+                : undefined
+            }`}
+          >
+            {goal.prioritized ? index + 1 : undefined}
+          </span>
+          <div className="flex justify-between w-full items-center gap-6">
             <p className=" flex-grow">{goal.content}</p>
+            {goal.prioritized ? (
+              <Button
+                variant="secondary"
+                onClick={updateGoal}
+                className="text-gray-500"
+              >
+                Deprioritize
+              </Button>
+            ) : !disabled ? (
+              <div className="flex flex-col gap-6">
+                <Button
+                  variant="secondary"
+                  onClick={updateGoal}
+                  className="text-gray-500"
+                >
+                  Prioritize
+                </Button>
+                <Button
+                  className="bg-white border-2 border-red-300 hover:text-white hover:border-none text-gray-500"
+                  variant="destructive"
+                  onClick={handleDelete}
+                >
+                  Delete
+                </Button>
+              </div>
+            ) : (
+              <div className="flex flex-col gap-3">
+                <DisabledButton>
+                  <div>
+                    <Button
+                      variant="secondary"
+                      disabled={disabled}
+                      className="text-gray-500"
+                    >
+                      Prioritize
+                    </Button>
+                  </div>
+                </DisabledButton>
+                <Button
+                  variant="destructive"
+                  onClick={handleDelete}
+                  className='text-gray-500 className="bg-white border-2 border-red-300 hover:text-white hover:border-none"'
+                >
+                  Delete
+                </Button>
+              </div>
+            )}
           </div>
-          {goal.prioritized ? (
-            <Button onClick={updateGoal}>Deprioritize</Button>
-          ) : !disabled ? (
-            <div className="flex flex-col gap-3">
-              <Button variant="secondary" onClick={updateGoal}>
-                Prioritize
-              </Button>
-              <Button variant="destructive" onClick={handleDelete}>
-                Delete
-              </Button>
-            </div>
-          ) : (
-            <div className="flex flex-col gap-3">
-              <DisabledButton>
-                <div>
-                  <Button variant="secondary" disabled={disabled}>
-                    Prioritize
-                  </Button>
-                </div>
-              </DisabledButton>
-              <Button variant="destructive" onClick={handleDelete}>
-                Delete
-              </Button>
-            </div>
-          )}
         </div>
       </CardContent>
     </Card>

@@ -2,6 +2,7 @@
 
 import { newGoal } from "@/utils/actions";
 import { useState } from "react";
+import { PlusCircle } from "@phosphor-icons/react";
 
 function GoalForm() {
   const [input, setInput] = useState("");
@@ -15,19 +16,27 @@ function GoalForm() {
         onSubmit={handleSubmit}
         className="flex items-center justify-center gap-9"
       >
-        <input
-          required
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          name="content"
-          placeholder="Enter a new goal"
-          type="text"
-          id="goal"
-          className="h-32 w-2/3 rounded-full border border-black/25 px-9"
-        />
-        <button type="submit" className="h-32 w-1/5 rounded-full bg-green-400 ">
-          Add a goal
-        </button>
+        <div className="w-full flex gap-6 justify-center items-center">
+          <input
+            required
+            max="191"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            name="content"
+            placeholder="Enter a new goal"
+            type="text"
+            id="goal"
+            className="shadow-md border border-dashed h-16 w-2/5 rounded-md border-black/25 px-9"
+          />
+          <button type="submit">
+            <PlusCircle
+              size={52}
+              weight="fill"
+              color="hsl(155, 67%, 45%)"
+              className="ease-out hover:translate-y-1 transition-all"
+            />
+          </button>
+        </div>
       </form>
     </section>
   );
